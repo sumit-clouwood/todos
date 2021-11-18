@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Card,
@@ -26,6 +26,8 @@ import {
 function App() {
   const [todoContent, setTodoContent] = useState('');
   const [todos, setTodos] = useState<ITODO[]>([]);
+
+  const todoInputRef = useRef<any>(null);
 
   const onDeleteTodo = (index: number) => {
     const todo = todos[index];
@@ -110,6 +112,15 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener('keydown', function (e) {
+      if (e.altKey === true && e.keyCode === 78) {
+        console.log('Alt + N');
+        todoInputRef.current.focus();
+      }
+    });
+  }, []);
+
   return (
     <>
       <Card style={{ width: 450 }} variant="outlined">
@@ -151,9 +162,9 @@ function App() {
           </div>
           <div className="flex items-center justify-between px-4 mt-4 pt-4">
             <TextField
-              id="filled-multiline-flexible"
               label="Enter task"
               size="small"
+              inputRef={todoInputRef}
               onKeyUp={(e) => onPressEnter(e, onCreateTodo)}
               value={todoContent}
               onChange={(e) => setTodoContent(e.target.value)}
@@ -168,6 +179,9 @@ function App() {
               Add todo
             </Button>
           </div>
+          <p className="mt-3 ml-4 text-xs">
+            Hint: use <strong>ALT+ N</strong> to create new todo
+          </p>
         </CardContent>
       </Card>
     </>
