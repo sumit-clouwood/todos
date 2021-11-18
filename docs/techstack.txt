@@ -1,0 +1,6 @@
+tech stack:
+1. Electronjs
+2. Reactjs
+3. Typescript
+4. Tailwindcss
+5. sqlite3": "^5.0.2
