@@ -85,7 +85,6 @@
     "electron": "^16.0.0",
     "electron-builder": "^22.13.1",
     "electron-notarize": "^1.1.1",
-    "electron-rebuild": "^3.2.5",
     "postcss": "7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.2"
